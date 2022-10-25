@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('alamat');
             $table->foreignId('id_provinsis')->constrained('provinsis','id_provinsis');
             $table->foreignId('id_kotas')->constrained('kotas','id_kotas');
-            $table->enum('kondisi_rumah', array('Perempuan', 'Laki-laki'));
+            $table->enum('kondisi_rumah', array('Milik Sendiri', 'Kontrak'));
             $table->double('ip', 15, 8);
             $table->double('ipk', 15, 8);
             $table->double('penghasilan_orangtua', 15, 8);
