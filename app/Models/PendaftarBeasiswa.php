@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class PendaftarBeasiswa extends Model
 {
     use HasFactory;
+    protected $primaryKey = 'id_pendaftar_beasiswas';
     protected $guarded=[];
 
     public function provinsiModel(){

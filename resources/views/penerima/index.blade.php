@@ -37,7 +37,7 @@
                                 </div>
                                 @if($showGenerate)
                                     <div class="mb-5">
-                                        <button class="btn btn-primary" id="applyFilter" name="applyFilter">Generate Penerima Beasiswa di Periode Ini</button>
+                                        <a href="{{ route('penerima.generate', ['tahun'=>$tahun,'bulan'=>$bulan]) }}" class="btn btn-primary" id="applyFilter" name="applyFilter">Generate Penerima Beasiswa di Periode Ini</a>
                                     </div>
                                 @endif
                                 <div class="table-responsive">

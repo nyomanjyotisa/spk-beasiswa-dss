@@ -23,8 +23,9 @@ Route::get('/penerima', function () {
     $tahun = $now->year;
     $bulan = $now->month;
     return redirect()->route('penerima', [$tahun, $bulan]);
-});
+})->name('penerimas');
 Route::get('/penerima/{tahun}/{bulan}', [PenerimaController::class,'index'])->name('penerima');
+Route::get('/penerima/generate/{tahun}/{bulan}', [PenerimaController::class,'generate'])->name('penerima.generate');
 
 // Dashboard
 Route::get('/dashboard-general-dashboard', function () {
