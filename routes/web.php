@@ -17,15 +17,18 @@ use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/dashboard-general-dashboard');
 
+Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
 
-Route::get('/penerima', function () {
-    $now = Carbon::now();
-    $tahun = $now->year;
-    $bulan = $now->month;
-    return redirect()->route('penerima', [$tahun, $bulan]);
-})->name('penerimas');
-Route::get('/penerima/{tahun}/{bulan}', [PenerimaController::class,'index'])->name('penerima');
-Route::get('/penerima/generate/{tahun}/{bulan}', [PenerimaController::class,'generate'])->name('penerima.generate');
+    Route::get('/penerima', function () {
+        $now = Carbon::now();
+        $tahun = $now->year;
+        $bulan = $now->month;
+        return redirect()->route('dashboard.penerima', [$tahun, $bulan]);
+    })->name('penerimas');
+    Route::get('/penerima/{tahun}/{bulan}', [PenerimaController::class,'index'])->name('penerima');
+    Route::get('/penerima/generate/{tahun}/{bulan}', [PenerimaController::class,'generate'])->name('penerima.generate');
+    
+});
 
 // Dashboard
 Route::get('/dashboard-general-dashboard', function () {

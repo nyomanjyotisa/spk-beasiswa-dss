@@ -37,7 +37,7 @@
                                 </div>
                                 @if($showGenerate)
                                     <div class="mb-5">
-                                        <a href="{{ route('penerima.generate', ['tahun'=>$tahun,'bulan'=>$bulan]) }}" class="btn btn-primary" id="applyFilter" name="applyFilter">Generate Penerima Beasiswa di Periode Ini</a>
+                                        <a href="{{ route('dashboard.penerima.generate', ['tahun'=>$tahun,'bulan'=>$bulan]) }}" class="btn btn-primary" id="applyFilter" name="applyFilter">Generate Penerima Beasiswa di Periode Ini</a>
                                     </div>
                                 @endif
                                 <div class="table-responsive">
@@ -96,7 +96,7 @@
     <script>
         $("#applyFilter").click(function () {
             var app_url = '{!! env("APP_URL") !!}';
-            url = app_url + "/penerima/" + $("#tahun").val() + "/" + $("#bulan").val();
+            url = app_url + "/dashboard/penerima/" + $("#tahun").val() + "/" + $("#bulan").val();
             console.log(app_url);
             window.location.href = url;
         });

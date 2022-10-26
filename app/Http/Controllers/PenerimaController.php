@@ -106,10 +106,6 @@ class PenerimaController extends Controller
         $pendaftars = PendaftarBeasiswa::join('provinsis', 'provinsis.id_provinsis', '=', 'pendaftar_beasiswas.id_provinsis')
                             ->join('kotas', 'kotas.id_kotas', '=', 'pendaftar_beasiswas.id_kotas')
                             ->where("periode_tahun", $tahun)->where("periode_bulan", $bulan)->get();
-
-        $atributs = Atribut::get();
-        // dd($pendaftars);
-        
         
         foreach ($pendaftars as $pendaftar) {
             $total = 0;
@@ -159,11 +155,6 @@ class PenerimaController extends Controller
                 $total += ($pendaftar->tanggungan_orangtua/5*10);
             }
 
-
-            // dd($total);
-            // $pendaftar->nilai_perhitungan = $total;
-            // $pendaftar->save();
-
             $findPendaftar = PendaftarBeasiswa::where("id_pendaftar_beasiswas", $pendaftar->id_pendaftar_beasiswas)->first();
             $findPendaftar->nilai_perhitungan = $total;
             $findPendaftar->save();
@@ -181,6 +172,6 @@ class PenerimaController extends Controller
             ]);
         }
 
-        return redirect()->route('penerimas');
+        return redirect()->route('dashboard.penerimas');
     }
 }

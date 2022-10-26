@@ -7,11 +7,11 @@
             <a href="index.html">St</a>
         </div>
         <ul class="sidebar-menu">
-            <li class="{{ Request::is('penerima') ? 'active' : '' }}">
+            <li class="{{ Request::is('dashboard.penerima') ? 'active' : '' }}">
                 <a class="nav-link"
-                    href="{{ url('penerima') }}"><i class="far fa-file-alt"></i> <span>Penerima Beasiswa</span></a>
+                    href="{{ url('dashboard/penerima') }}"><i class="far fa-file-alt"></i> <span>Penerima Beasiswa</span></a>
             </li>
-            <li class="menu-header">Dashboard</li>
+            <!-- <li class="menu-header">Dashboard</li>
             <li class="nav-item dropdown {{ $type_menu === 'dashboard' ? 'active' : '' }}">
                 <a href="#"
                     class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
@@ -385,14 +385,14 @@
                     href="{{ url('credits') }}"><i class="fas fa-pencil-ruler">
                     </i> <span>Credits</span>
                 </a>
-            </li>
+            </li> -->
         </ul>
 
-        <div class="hide-sidebar-mini mt-4 mb-4 p-3">
+        <!-- <div class="hide-sidebar-mini mt-4 mb-4 p-3">
             <a href="https://getstisla.com/docs"
                 class="btn btn-primary btn-lg btn-block btn-icon-split">
                 <i class="fas fa-rocket"></i> Documentation
             </a>
-        </div>
+        </div> -->
     </aside>
 </div>
