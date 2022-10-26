@@ -27,6 +27,9 @@ return new class extends Migration
             $table->double('ipk', 15, 8);
             $table->double('penghasilan_orangtua', 15, 8);
             $table->double('tanggungan_orangtua', 15, 8);
+            $table->double('nilai_perhitungan', 15, 8)->nullable();
+            $table->string('periode_tahun');
+            $table->string('periode_bulan');
             $table->timestamps();
         });
     }

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PenerimaController;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +16,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::redirect('/', '/dashboard-general-dashboard');
+
+
+Route::get('/penerima', function () {
+    $now = Carbon::now();
+    $tahun = $now->year;
+    $bulan = $now->month;
+    return redirect()->route('penerima', [$tahun, $bulan]);
+});
+Route::get('/penerima/{tahun}/{bulan}', [PenerimaController::class,'index'])->name('penerima');
 
 // Dashboard
 Route::get('/dashboard-general-dashboard', function () {

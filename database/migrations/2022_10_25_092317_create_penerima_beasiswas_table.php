@@ -16,8 +16,6 @@ return new class extends Migration
         Schema::create('penerima_beasiswas', function (Blueprint $table) {
             $table->id('id_penerima_beasiswas');
             $table->foreignId('id_pendaftar_beasiswas')->constrained('pendaftar_beasiswas','id_pendaftar_beasiswas');
-            $table->double('nilai_perhitungan', 15, 8);
-            $table->enum('status', array('Lolos', 'Tidak Lolos'));
             $table->timestamps();
         });
     }

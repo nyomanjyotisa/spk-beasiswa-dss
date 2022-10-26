@@ -7,6 +7,10 @@
             <a href="index.html">St</a>
         </div>
         <ul class="sidebar-menu">
+            <li class="{{ Request::is('penerima') ? 'active' : '' }}">
+                <a class="nav-link"
+                    href="{{ url('penerima') }}"><i class="far fa-file-alt"></i> <span>Penerima Beasiswa</span></a>
+            </li>
             <li class="menu-header">Dashboard</li>
             <li class="nav-item dropdown {{ $type_menu === 'dashboard' ? 'active' : '' }}">
                 <a href="#"
