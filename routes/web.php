@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PendaftarController;
 use App\Http\Controllers\PenerimaController;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
@@ -28,7 +29,28 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
     Route::get('/penerima/{tahun}/{bulan}', [PenerimaController::class,'index'])->name('penerima');
     Route::get('/penerima/generate/{tahun}/{bulan}', [PenerimaController::class,'generate'])->name('penerima.generate');
     
+    Route::group(['prefix' => 'pendaftar', 'as' => 'pendaftar.'], function () {
+        Route::get('/destroy/{id}', [PendaftarController::class,'destroy'])->name('destroy');
+        Route::get('/getKota/{id}', [PendaftarController::class,'getKota'])->name('getKota');
+        Route::get('/edit/{id}', [PendaftarController::class,'edit'])->name('edit');
+        Route::get('/{tahun}/{bulan}', [PendaftarController::class,'index'])->name('list');
+        Route::get('/create/{tahun}/{bulan}', [PendaftarController::class,'create'])->name('create');
+        Route::post('/store', [PendaftarController::class,'store'])->name('store');
+        Route::post('/update/{id}', [PendaftarController::class,'update'])->name('update');
+        Route::post('/import',[PendaftarController::class,'import'])->name('import'); 
+        
+        Route::get('/', function () {
+            $now = Carbon::now();
+            $tahun = $now->year;
+            $bulan = $now->month;
+            return redirect()->route('dashboard.pendaftar.list', [$tahun, $bulan]);
+        })->name('pendaftars');
+    });
+
+
 });
+
+
 
 // Dashboard
 Route::get('/dashboard-general-dashboard', function () {

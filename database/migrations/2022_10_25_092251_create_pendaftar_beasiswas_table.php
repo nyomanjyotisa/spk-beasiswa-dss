@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id('id_pendaftar_beasiswas');
             $table->string('nama');
             $table->enum('kelamin', array('Perempuan', 'Laki-laki'));
-            $table->string('nik')->unique();
+            $table->string('nik');
             $table->string('telpon');
             $table->string('alamat');
             $table->foreignId('id_provinsis')->constrained('provinsis','id_provinsis');
