@@ -37,7 +37,8 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
         Route::get('/create/{tahun}/{bulan}', [PendaftarController::class,'create'])->name('create');
         Route::post('/store', [PendaftarController::class,'store'])->name('store');
         Route::post('/update/{id}', [PendaftarController::class,'update'])->name('update');
-        Route::post('/import',[PendaftarController::class,'import'])->name('import'); 
+        Route::post('/import',[PendaftarController::class,'import'])->name('import');
+        Route::get('/export',[PendaftarController::class,'export'])->name('export'); 
         
         Route::get('/', function () {
             $now = Carbon::now();

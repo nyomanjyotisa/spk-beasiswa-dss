@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\PendaftarBeasiswaTemplateExport;
 use App\Imports\PendaftarBeasiswasImport;
 use App\Models\Kota;
 use App\Models\PendaftarBeasiswa;
@@ -85,6 +86,11 @@ class PendaftarController extends Controller
         }
         return redirect()->route('dashboard.pendaftar.list',[$request->periode_tahun,$request->periode_bulan])->with('success', 'Pendaftar beasiswa telah berhasil ditambahkan.');
     }
+
+    public function export()
+	{
+		return Excel::download(new PendaftarBeasiswaTemplateExport, 'TemplatePendaftarBeasiswa.xlsx');
+	}
 
     /**
      * Store a newly created resource in storage.

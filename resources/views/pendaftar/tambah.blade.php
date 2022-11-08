@@ -183,6 +183,21 @@
                         </form>
                     </div>
                 </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Download Template Pendaftar Beasiswa (Excel)</h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{ route('dashboard.pendaftar.export') }}" method="GET" enctype="multipart/form-data">
+                            <div class="form-group row mb-4">
+                                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-2">Template(.xlsx)</label>
+                                <div class="col-sm-12 col-md-7">
+                                    <button type="submit" class="btn btn-primary">Download Template Pendaftar Beasiswa</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
