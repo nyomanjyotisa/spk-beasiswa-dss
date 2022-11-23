@@ -7,6 +7,7 @@ use App\Models\PendaftarBeasiswa;
 use App\Models\PenerimaBeasiswa;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class PenerimaController extends Controller
@@ -107,13 +108,24 @@ class PenerimaController extends Controller
                             ->join('kotas', 'kotas.id_kotas', '=', 'pendaftar_beasiswas.id_kotas')
                             ->where("periode_tahun", $tahun)->where("periode_bulan", $bulan)->get();
         
+        $bobotProvTertinggal = Atribut::where('nama', 'provinsi')->first()->bobot;
+        $bobotKabTertinggal = Atribut::where('nama', 'kota')->first()->bobot;
+        $bobotRumah = Atribut::where('nama', 'kondisi_rumah')->first()->bobot;
+        $bobotIP = Atribut::where('nama', 'ip')->first()->bobot;
+        $bobotIPK = Atribut::where('nama', 'ipk')->first()->bobot;
+        $bobotPenghasilan = Atribut::where('nama', 'penghasilan_orangtua')->first()->bobot;
+        $bobotTanggungan = Atribut::where('nama', 'tanggungan_orangtua')->first()->bobot;
+
+
         foreach ($pendaftars as $pendaftar) {
             $total = 0;
 
             //prvinsi
             $provinsi_tertinggal = array('papua', 'papua barat', 'maluku', 'nusa tenggara barat', 'sumatera utara');
             if(in_array(Str::lower($pendaftar->provinsi), $provinsi_tertinggal)){
-                $total += 10;
+                $total += $bobotProvTertinggal*2/2;
+            }else{
+                $total += $bobotProvTertinggal*1/2;
             }
 
             //kabupaten
@@ -126,33 +138,68 @@ class PenerimaController extends Controller
                 'pegunungan arfak', 'jayawijaya', 'nabire', 'paniai', 'puncak jaya', 'boven digoel', 'mappi', 'asmat', 'yahukimo',
                 'pegunungan bintang', 'tolikara', 'keerom', 'waropen', 'supiori', 'mamberamo raya', 'nduga', 'lanny jaya',
                 'mamberamo tengah', 'yalimo', 'puncak', 'dogiyai', 'intan jaya', 'daiyai');
+            
             if(in_array(Str::lower($pendaftar->kotas), $kabupaten_tertinggal)){
-                $total += 10;
+                $total += $bobotKabTertinggal*2/2;
+            }else{
+                $total += $bobotKabTertinggal*1/2;
             }
 
             //kondisi rumah
-            if(Str::lower($pendaftar->kondisi_rumah) == "Kontrak"){
-                $total += 20;
+            if(Str::lower($pendaftar->kondisi_rumah) == "kontrak"){
+                $total += $bobotRumah*2/2;
+            }else{
+                $total += $bobotRumah*1/2;
             }
 
             //ip
-            $total += ($pendaftar->ip/4*10);
+            if($pendaftar->ip > 3.75){
+                $total += $bobotIP*5/5;
+            }else if($pendaftar->ip > 3.25){
+                $total += $bobotIP*4/5;
+            }else if($pendaftar->ip > 3.00){
+                $total += $bobotIP*3/5;
+            }else if($pendaftar->ip > 2.75){
+                $total += $bobotIP*2/5;
+            }else{
+                $total += $bobotIP*1/5;
+            }
 
             //ipk
-            $total += ($pendaftar->ipk/4*20);
+            if($pendaftar->ipk > 3.75){
+                $total += $bobotIPK*5/5;
+            }else if($pendaftar->ipk > 3.25){
+                $total += $bobotIPK*4/5;
+            }else if($pendaftar->ipk > 3.00){
+                $total += $bobotIPK*3/5;
+            }else if($pendaftar->ipk > 2.75){
+                $total += $bobotIPK*2/5;
+            }else{
+                $total += $bobotIPK*1/5;
+            }
 
             //penghasilan_orangtua
-            if($pendaftar->penghasilan_orangtua > 2000000){
-                $total += 0;
+            if($pendaftar->penghasilan_orangtua < 800000){
+                $total += $bobotPenghasilan*4/4;
+            }else if($pendaftar->penghasilan_orangtua < 1500000){
+                $total += $bobotPenghasilan*3/4;
+            }else if($pendaftar->penghasilan_orangtua < 3000000){
+                $total += $bobotPenghasilan*2/4;
             }else{
-                $total += ((2000000 - $pendaftar->penghasilan_orangtua)/2000000*20);
+                $total += $bobotPenghasilan*1/4;
             }
 
             //tanggungan_orangtua
-            if($pendaftar->tanggungan_orangtua > 5){
-                $total += 10;
+            if($pendaftar->tanggungan_orangtua == 1){
+                $total += $bobotTanggungan*5/5;
+            }else if($pendaftar->tanggungan_orangtua == 2){
+                $total += $bobotTanggungan*4/5;
+            }else if($pendaftar->tanggungan_orangtua == 3){
+                $total += $bobotTanggungan*3/5;
+            }else if($pendaftar->tanggungan_orangtua == 4){
+                $total += $bobotTanggungan*2/5;
             }else{
-                $total += ($pendaftar->tanggungan_orangtua/5*10);
+                $total += $bobotTanggungan*1/5;
             }
 
             $findPendaftar = PendaftarBeasiswa::where("id_pendaftar_beasiswas", $pendaftar->id_pendaftar_beasiswas)->first();
