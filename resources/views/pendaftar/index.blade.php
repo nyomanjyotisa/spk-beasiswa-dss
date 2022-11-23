@@ -138,13 +138,13 @@
 <script>
     $(document).on('change', '#tahun', function() {
         var app_url = '{!! env("APP_URL") !!}';
-        url = app_url + ":8000/dashboard/pendaftar/" + $("#tahun").val() + "/" + $("#bulan").val();
+        url = app_url + "/dashboard/pendaftar/" + $("#tahun").val() + "/" + $("#bulan").val();
         console.log(app_url);
         window.location.href = url;
     });
     $(document).on('change', '#bulan', function() {
         var app_url = '{!! env("APP_URL") !!}';
-        url = app_url + ":8000/dashboard/pendaftar/" + $("#tahun").val() + "/" + $("#bulan").val();
+        url = app_url + "/dashboard/pendaftar/" + $("#tahun").val() + "/" + $("#bulan").val();
         console.log(app_url);
         window.location.href = url;
     });

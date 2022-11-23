@@ -221,7 +221,7 @@
     $('#provinsi').change(function() {
         var id = $(this).val();
         var app_url = '{!! env("APP_URL") !!}';
-        var urls = app_url + ":8000/dashboard/pendaftar/getKota/"+ id;
+        var urls = app_url + "/dashboard/pendaftar/getKota/"+ id;
         $('#kota_id').find('option').remove().end()
         $.ajax({
             url: urls,

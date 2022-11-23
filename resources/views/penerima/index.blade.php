@@ -92,7 +92,7 @@
 <script>
     $("#applyFilter").click(function() {
         var app_url = '{!! env("APP_URL") !!}';
-        url = app_url + ":8000/dashboard/penerima/" + $("#tahun").val() + "/" + $("#bulan").val();
+        url = app_url + "/dashboard/penerima/" + $("#tahun").val() + "/" + $("#bulan").val();
         console.log(app_url);
         window.location.href = url;
     });
