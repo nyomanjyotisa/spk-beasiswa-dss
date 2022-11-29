@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Data;
 use App\Models\PendaftarBeasiswa;
 use App\Models\PenerimaBeasiswa;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -16,6 +17,11 @@ class PendaftarPenerimaBeasiswaSeeder extends Seeder
      */
     public function run()
     {
+        
+        Data::create([
+            'label' => 'jumlah_penerima_per_periode',
+            'value' => 5,
+        ]);
         for ($i = 1; $i < 50; $i++) {
 
             if($i < 10){

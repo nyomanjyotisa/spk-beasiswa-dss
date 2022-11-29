@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AtributController;
 use App\Http\Controllers\PendaftarController;
 use App\Http\Controllers\PenerimaController;
 use Carbon\Carbon;
@@ -16,19 +17,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::redirect('/', '/dashboard-general-dashboard');
+Route::redirect('/', '/dashboard/penerima');
 
 Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
 
-    Route::get('/penerima', function () {
-        $now = Carbon::now();
-        $tahun = $now->year;
-        $bulan = $now->month;
-        return redirect()->route('dashboard.penerima', [$tahun, $bulan]);
-    })->name('penerimas');
-    Route::get('/penerima/{tahun}/{bulan}', [PenerimaController::class,'index'])->name('penerima');
-    Route::get('/penerima/generate/{tahun}/{bulan}', [PenerimaController::class,'generate'])->name('penerima.generate');
-    
+    Route::group(['prefix' => 'penerima', 'as' => 'penerima.'], function () {
+        Route::get('/', function () {
+            $now = Carbon::now();
+            $tahun = $now->year;
+            $bulan = $now->month;
+            return redirect()->route('dashboard.penerima.list', [$tahun, $bulan]);
+        })->name('penerimas');
+        Route::get('/{tahun}/{bulan}', [PenerimaController::class,'index'])->name('list');
+        Route::get('/generate/{tahun}/{bulan}', [PenerimaController::class,'generate'])->name('generate');
+        Route::get('/regenerate/{tahun}/{bulan}', [PenerimaController::class,'regenerate'])->name('regenerate');
+    });
+
     Route::group(['prefix' => 'pendaftar', 'as' => 'pendaftar.'], function () {
         Route::get('/destroy/{id}', [PendaftarController::class,'destroy'])->name('destroy');
         Route::get('/getKota/{id}', [PendaftarController::class,'getKota'])->name('getKota');
@@ -48,7 +52,13 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
         })->name('pendaftars');
     });
 
-
+    Route::group(['prefix' => 'pengaturan', 'as' => 'pengaturan.'], function () {
+        Route::get('/', [AtributController::class,'index'])->name('list');
+        Route::post('/', [AtributController::class,'index'])->name('post');
+        Route::get('/atribut/edit/{id}', [AtributController::class,'edit'])->name('atribut.edit');
+        Route::post('/atribut/update/{id}', [AtributController::class,'update'])->name('atribut.update');
+        Route::post('/jumlah-penerima/update', [AtributController::class,'jumlah_penerima'])->name('jumlah-penerima.update');
+    });
 });
 
 

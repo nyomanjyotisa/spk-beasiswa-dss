@@ -28,15 +28,37 @@
                             <h4>Daftar Penerima Beasiswa</h4>
                         </div>
                         <div class="card-body">
-                            <div class="mb-5">
-                                <p>Pilih Periode</p>
-                                <span class="mr-3">Tahun : </span><input type="text" id="tahun" name="tahun" value="{{$tahun}}">
-                                <span class="ml-5 mr-3">Bulan : </span><input type="text" id="bulan" name="bulan" value="{{$bulan}}">
-                                <button class="ml-5 btn btn-primary" id="applyFilter" name="applyFilter">Apply</button>
+                            <div class="form-group row mb-4">
+                                <div class="col-md-6">
+                                    <label class="col-form-label text-md-left">Tahun</label>
+                                    <div>
+                                        <select name="tahun" id="tahun" class="form-control selectric">
+                                            {{ $last= date('Y')-120 }}
+                                            {{ $now = date('Y') }}
+                                            @for ($i = $now; $i >= $last; $i--)
+                                            <option value="{{ $i }}" @if ($tahun==$i) selected="selected" @endif>{{ $i }}</option>
+                                            @endfor
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="col-form-label text-md-left">Bulan</label>
+                                    <div>
+                                        <select name="bulan" id="bulan" class="form-control selectric">
+                                            @for ($i = 1; $i <= 12; $i++) 
+                                            <option value="{{ $i }}" @if ($bulan==$i) selected="selected" @endif>{{ $i }}</option>
+                                            @endfor
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
-                            @if($showGenerate)
+                            @if($showGenerate == 1)
                             <div class="mb-5">
                                 <a href="{{ route('dashboard.penerima.generate', ['tahun'=>$tahun,'bulan'=>$bulan]) }}" class="btn btn-primary" id="applyFilter" name="applyFilter">Generate Penerima Beasiswa di Periode Ini</a>
+                            </div>
+                            @elseif($showGenerate == 0)
+                            <div class="mb-5">
+                                <a href="{{ route('dashboard.penerima.regenerate', ['tahun'=>$tahun,'bulan'=>$bulan]) }}" class="btn btn-primary" id="applyFilter" name="applyFilter">Reset Penerima Beasiswa di Periode Ini</a>
                             </div>
                             @endif
                             <div class="table-responsive">
@@ -90,7 +112,13 @@
 
 <!-- Page Specific JS File -->
 <script>
-    $("#applyFilter").click(function() {
+    $(document).on('change', '#tahun', function() {
+        var app_url = '{!! env("APP_URL") !!}';
+        url = app_url + "/dashboard/penerima/" + $("#tahun").val() + "/" + $("#bulan").val();
+        console.log(app_url);
+        window.location.href = url;
+    });
+    $(document).on('change', '#bulan', function() {
         var app_url = '{!! env("APP_URL") !!}';
         url = app_url + "/dashboard/penerima/" + $("#tahun").val() + "/" + $("#bulan").val();
         console.log(app_url);
