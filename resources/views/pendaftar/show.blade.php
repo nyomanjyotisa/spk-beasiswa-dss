@@ -42,11 +42,11 @@
                                             </tr>
                                             <tr>
                                                 <th>Provinsi</th>
-                                                <td>{{ $pendaftar->id_provinsis }}</td>
+                                                <td>{{ $pendaftar->provinsiModel->provinsi }}</td>
                                             </tr>
                                             <tr>
                                                 <th>Kota</th>
-                                                <td>{{ $pendaftar->id_kotas }}</td>
+                                                <td>{{ $pendaftar->kota->kotas }}</td>
                                             </tr>
                                             <tr>
                                                 <th>Kondisi Rumah</th>
@@ -62,7 +62,7 @@
                                             </tr>
                                             <tr>
                                                 <th>Penghasilan Orang Tua</th>
-                                                <td>{{ $pendaftar->penghasilan_orangtua }}</td>
+                                                <td>Rp {{ $pendaftar->penghasilan_orangtua }}</td>
                                             </tr>
                                             <tr>
                                                 <th>Tanggungan Orang Tua</th>

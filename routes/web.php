@@ -45,18 +45,18 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.', 'middleware' => ['a
         Route::get('/{tahun}/{bulan}', [PenerimaController::class,'index'])->name('list');
         Route::get('/generate/{tahun}/{bulan}', [PenerimaController::class,'generate'])->name('generate');
         Route::get('/regenerate/{tahun}/{bulan}', [PenerimaController::class,'regenerate'])->name('regenerate');
+        Route::get('/show{id}', [PenerimaController::class,'show'])->name('show');
     });
-
 
     Route::group(['prefix' => 'pendaftar', 'as' => 'pendaftar.'], function () {
         Route::get('/destroy/{id}', [PendaftarController::class,'destroy'])->name('destroy');
         Route::get('/getKota/{id}', [PendaftarController::class,'getKota'])->name('getKota');
+        Route::get('/show{id}', [PendaftarController::class,'show'])->name('show');
         Route::get('/edit/{id}', [PendaftarController::class,'edit'])->name('edit');
         Route::get('/{tahun}/{bulan}', [PendaftarController::class,'index'])->name('list');
         Route::get('/create/{tahun}/{bulan}', [PendaftarController::class,'create'])->name('create');
         Route::post('/store', [PendaftarController::class,'store'])->name('store');
         Route::post('/update/{id}', [PendaftarController::class,'update'])->name('update');
-        Route::post('/show/{id}', [PendaftarController::class,'show'])->name('show');
         Route::post('/import',[PendaftarController::class,'import'])->name('import');
         Route::get('/export',[PendaftarController::class,'export'])->name('export'); 
         
