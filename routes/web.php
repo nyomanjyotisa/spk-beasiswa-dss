@@ -33,7 +33,7 @@ Route::get('/', function () {
     }
 });
 
-Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
+Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.', 'middleware' => ['auth:web']], function () {
 
     Route::group(['prefix' => 'penerima', 'as' => 'penerima.'], function () {
         Route::get('/', function () {
