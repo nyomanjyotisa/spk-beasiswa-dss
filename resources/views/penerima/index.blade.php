@@ -86,7 +86,7 @@
                                             <td>{{$penerima->provinsiModel->provinsi}}</td>
                                             <td>{{$penerima->kota->kotas}}</td>
                                             <td>{{$penerima->nilai_perhitungan}}</td>
-                                            <td><a href="" class="btn btn-secondary">Detail</a></td>
+                                            <td><a href="{{ route('dashboard.penerima.show', $penerima->id_penerima_beasiswas) }}" class="btn btn-secondary">Detail</a></td>
                                         </tr>
                                         @endforeach
                                     </tbody>

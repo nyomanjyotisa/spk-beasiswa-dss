@@ -68,7 +68,8 @@ class PenerimaController extends Controller
      */
     public function show($id)
     {
-        //
+        $type_menu = "";
+        return view('penerima.show', compact("type_menu"));
     }
 
     /**
@@ -79,7 +80,7 @@ class PenerimaController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
