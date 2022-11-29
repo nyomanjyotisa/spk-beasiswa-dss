@@ -15,6 +15,8 @@
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous"
         referrerpolicy="no-referrer" />
+    <link rel="icon" href="{{ url('css/icons8-growing-money-96.png') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url('css/style.css') }}">
 
     @stack('style')
 
