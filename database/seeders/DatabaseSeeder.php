@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use App\Models\Atribut;
 use App\Models\Kota;
 use App\Models\PendaftarBeasiswa;
@@ -31,6 +32,7 @@ class DatabaseSeeder extends Seeder
             ProvinsiSeeder::class,
             KotaSeeder::class,
             PendaftarPenerimaBeasiswaSeeder::class,
+            UserSeeder::class,
         ]);
 
         

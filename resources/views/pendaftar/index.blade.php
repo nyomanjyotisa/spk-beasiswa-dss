@@ -106,6 +106,7 @@
                                             <td>
                                                 @if (empty($daftar->nilai_perhitungan))
                                                 <a href="{{ route('dashboard.pendaftar.edit', $daftar->id_pendaftar_beasiswas) }}" class="btn btn-warning">Edit</a>
+                                                <a href="{{ route('dashboard.pendaftar.show', $daftar->id_pendaftar_beasiswas) }}" class="btn btn-info">Detail</a>
                                                 <a onclick="return confirm ('Hapus data?')" href="{{ route('dashboard.pendaftar.destroy', $daftar->id_pendaftar_beasiswas) }}" class="btn btn-danger">Delete</a>
                                                 @else
                                                 -

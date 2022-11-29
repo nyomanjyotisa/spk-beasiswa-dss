@@ -145,9 +145,12 @@ class PendaftarController extends Controller
      */
     public function show($id)
     {
-        //
+        $type_menu = "";
+        $provinsis = Provinsi::all();
+        $pendaftar = PendaftarBeasiswa::with("provinsiModel", "kota")->find($id);
+        return view('pendaftar.show', compact("type_menu", "provinsis", "pendaftar"));
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      *
