@@ -7,13 +7,17 @@
             <a href="index.html">St</a>
         </div>
         <ul class="sidebar-menu">
-            <li class="{{ Request::is('dashboard.pendaftar') ? 'active' : '' }}">
+            <li class="{{ Route::current()->getPrefix() === 'dashboard/pendaftar' ? 'active' : '' }}">
                 <a class="nav-link"
                     href="{{ url('dashboard/pendaftar') }}"><i class="fas fa-pencil-ruler"></i> <span>Pendaftar Beasiswa</span></a>
             </li>
-            <li class="{{ Request::is('dashboard.penerima') ? 'active' : '' }}">
+            <li class="{{ Route::current()->getPrefix() === 'dashboard/penerima' ? 'active' : '' }}">
                 <a class="nav-link"
                     href="{{ url('dashboard/penerima') }}"><i class="far fa-file-alt"></i> <span>Penerima Beasiswa</span></a>
+            </li>
+            <li class="{{ Route::current()->getPrefix() === 'dashboard/pengaturan' ? 'active' : '' }}">
+                <a class="nav-link"
+                    href="{{ url('dashboard/pengaturan') }}"><i class="fas fa-cog"></i> <span>Pengaturan</span></a>
             </li>
             <!-- <li class="menu-header">Dashboard</li>
             <li class="nav-item dropdown {{ $type_menu === 'dashboard' ? 'active' : '' }}">
