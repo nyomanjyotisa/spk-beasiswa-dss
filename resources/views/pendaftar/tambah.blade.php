@@ -164,8 +164,8 @@
                         <form action="{{ route('dashboard.pendaftar.import') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                             <div class="form-group row mb-4">
-                                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-2">File Excel</label>
-                                <div class="col-sm-12 col-md-8">
+                                <label class="col-form-label text-md-left col-12 col-md-12 col-lg-12">File Excel</label>
+                                <div class="col-sm-12 col-md-12">
                                     <div class="custom-file">
                                         <input type="file" name="file" class="custom-file-input" id="file" multiple>
                                         <label class="custom-file-label" for="customFile">Choose file</label>
@@ -175,8 +175,7 @@
                             <input type="hidden" name="periode_tahun" value="{{$tahun}}" class="form-control">
                             <input type="hidden" name="periode_bulan" value="{{$bulan}}" class="form-control">
                             <div class="form-group row mb-4">
-                                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-2"></label>
-                                <div class="col-sm-12 col-md-7">
+                                <div class="col-sm-12 col-md-12">
                                     <button type="submit" class="btn btn-primary">Import Pendaftar Beasiswa</button>
                                 </div>
                             </div>
@@ -190,8 +189,8 @@
                     <div class="card-body">
                         <form action="{{ route('dashboard.pendaftar.export') }}" method="GET" enctype="multipart/form-data">
                             <div class="form-group row mb-4">
-                                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-2">Template(.xlsx)</label>
-                                <div class="col-sm-12 col-md-7">
+                                <label class="col-form-label text-md-left col-12 col-md-12 col-lg-12">Template(.xlsx)</label>
+                                <div class="col-sm-12 col-md-12">
                                     <button type="submit" class="btn btn-primary">Download Template Pendaftar Beasiswa</button>
                                 </div>
                             </div>
