@@ -35,7 +35,7 @@
                                 <div class="form-group">
                                     <form action="{{ route('dashboard.pengaturan.jumlah-penerima.update') }}" method="POST">
                                         @csrf
-                                        <input type="text"
+                                        <input type="number"
                                             value="{{$data->value}}"
                                             name="jumlah_penerima_per_periode"
                                             class="form-control"
