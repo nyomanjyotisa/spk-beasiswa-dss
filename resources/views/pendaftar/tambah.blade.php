@@ -24,6 +24,11 @@
                         <h4>Form Tambah Pendaftar Beasiswa</h4>
                     </div>
                     <div class="card-body">
+                        @if($errors->any())
+                            @foreach($errors->all() as $err)
+                                <p class="alert alert-danger">{{ $err }}</p>
+                            @endforeach
+                        @endif
                         <form action="{{ route('dashboard.pendaftar.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group row mb-4">
@@ -50,7 +55,7 @@
                             <div class="form-group row mb-4">
                                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-2">No. Telepon</label>
                                 <div class="col-sm-12 col-md-8">
-                                    <input type="text" name="telpon" class="form-control">
+                                    <input type="number" name="telpon" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row mb-4">
@@ -138,9 +143,8 @@
                                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-2">Bulan</label>
                                 <div class="col-sm-12 col-md-8">
                                     <select disabled name="periode_bulan" class="form-control select2">
-                                        @for ($i = 1; $i <= 12; $i++) 
-                                        <option value="{{ $i }}" @if ($bulan==$i) selected="selected" @endif>{{ $i }}</option>
-                                        @endfor
+                                        @for ($i = 1; $i <= 12; $i++) <option value="{{ $i }}" @if ($bulan==$i) selected="selected" @endif>{{ $i }}</option>
+                                            @endfor
                                     </select>
                                 </div>
                                 <input type="hidden" name="periode_bulan" value="{{$bulan}}" class="form-control">
@@ -162,12 +166,12 @@
                     </div>
                     <div class="card-body">
                         <form action="{{ route('dashboard.pendaftar.import') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
+                            @csrf
                             <div class="form-group row mb-4">
                                 <label class="col-form-label text-md-left col-12 col-md-12 col-lg-12">File Excel</label>
                                 <div class="col-sm-12 col-md-12">
                                     <div class="custom-file">
-                                        <input type="file" name="file" class="custom-file-input" id="file" multiple>
+                                        <input type="file" name="file" class="custom-file-input" id="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
                                         <label class="custom-file-label" for="customFile">Choose file</label>
                                     </div>
                                 </div>
@@ -220,7 +224,7 @@
     $('#provinsi').change(function() {
         var id = $(this).val();
         var app_url = '{!! env("APP_URL") !!}';
-        var urls = app_url + "/dashboard/pendaftar/getKota/"+ id;
+        var urls = app_url + "/dashboard/pendaftar/getKota/" + id;
         $('#kota_id').find('option').remove().end()
         $.ajax({
             url: urls,

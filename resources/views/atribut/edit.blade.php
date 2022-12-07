@@ -23,7 +23,7 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label>Bobot</label>
-                                        <input type="text"
+                                        <input type="number"
                                             value="{{$atribut->bobot}}"
                                             name="bobot"
                                             class="form-control"

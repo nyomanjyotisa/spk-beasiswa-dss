@@ -44,13 +44,7 @@
                             <h4>Daftar Pendaftar Beasiswa</h4>
                         </div>
                         <div class="card-body">
-                            @if(count($pendaftars) > 0)
-                                @foreach($pendaftars as $daftar)
-                                    @if ($loop->first && empty($daftar->nilai_perhitungan))
-                                        <a href="{{ route('dashboard.pendaftar.create', ['tahun' => $tahun, 'bulan' => $bulan]) }}" class="btn btn-primary mb-4">Tambah Pendaftar Beasiswa</a>
-                                    @endif
-                                @endforeach
-                            @else
+                            @if($penerimas == 0)
                                 <a href="{{ route('dashboard.pendaftar.create', ['tahun' => $tahun, 'bulan' => $bulan]) }}" class="btn btn-primary mb-4">Tambah Pendaftar Beasiswa</a>
                             @endif
                             <div class="form-group row mb-4">
@@ -103,11 +97,11 @@
                                             <td>{{$daftar->nik}}</td>
                                             <td>{{$daftar->telpon}}</td>
                                             <td>{{$daftar->alamat}}</td>
-                                            <td>
-                                                @if (empty($daftar->nilai_perhitungan))
-                                                <a href="{{ route('dashboard.pendaftar.edit', $daftar->id_pendaftar_beasiswas) }}" class="btn btn-warning ms-2 mt-2 w-100">Edit</a>
-                                                <!-- <a href="{{ route('dashboard.pendaftar.show', $daftar->id_pendaftar_beasiswas) }}" class="btn btn-info">Detail</a> -->
-                                                <a onclick="return confirm ('Hapus data?')" href="{{ route('dashboard.pendaftar.destroy', $daftar->id_pendaftar_beasiswas) }}" class="btn btn-danger ms-2 mt-2 w-100">Delete</a>
+                                            <td style="min-width: 200px;">
+                                                @if($penerimas == 0)
+                                                <a href="{{ route('dashboard.pendaftar.edit', $daftar->id_pendaftar_beasiswas) }}" class="btn btn-warning">Edit</a>
+                                                <a href="{{ route('dashboard.pendaftar.show', $daftar->id_pendaftar_beasiswas) }}" class="btn btn-info">Detail</a>
+                                                <a onclick="return confirm ('Hapus data?')" href="{{ route('dashboard.pendaftar.destroy', $daftar->id_pendaftar_beasiswas) }}" class="btn btn-danger">Delete</a>
                                                 @else
                                                 -
                                                 @endif

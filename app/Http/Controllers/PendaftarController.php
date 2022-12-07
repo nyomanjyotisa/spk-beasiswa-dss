@@ -6,6 +6,7 @@ use App\Exports\PendaftarBeasiswaTemplateExport;
 use App\Imports\PendaftarBeasiswasImport;
 use App\Models\Kota;
 use App\Models\PendaftarBeasiswa;
+use App\Models\PenerimaBeasiswa;
 use App\Models\Provinsi;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -21,8 +22,11 @@ class PendaftarController extends Controller
     public function index($tahun, $bulan)
     {
         $type_menu = "";
+        $penerimas = PendaftarBeasiswa::join('penerima_beasiswas', 'pendaftar_beasiswas.id_pendaftar_beasiswas', '=', 'penerima_beasiswas.id_pendaftar_beasiswas')
+            ->where("periode_tahun", $tahun)
+            ->where("periode_bulan", $bulan)->get()->count();
         $pendaftars = PendaftarBeasiswa::with("provinsiModel", "kota")->where("periode_tahun", $tahun)->where("periode_bulan", $bulan)->get();
-        return view('pendaftar.index', compact("type_menu", "pendaftars", "tahun", "bulan"));
+        return view('pendaftar.index', compact("type_menu", "pendaftars", "tahun", "bulan", "penerimas"));
     }
 
     /**

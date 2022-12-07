@@ -24,6 +24,11 @@
                         <h4>Form Mengubah Data Pendaftar Beasiswa</h4>
                     </div>
                     <div class="card-body">
+                        @if($errors->any())
+                            @foreach($errors->all() as $err)
+                                <p class="alert alert-danger">{{ $err }}</p>
+                            @endforeach
+                        @endif
                         <form action="{{ route('dashboard.pendaftar.update', $pendaftar->id_pendaftar_beasiswas) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group row mb-4">
@@ -50,7 +55,7 @@
                             <div class="form-group row mb-4">
                                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-2">No. Telepon</label>
                                 <div class="col-sm-12 col-md-8">
-                                    <input type="text" name="telpon" class="form-control" value="{{$pendaftar->telpon}}">
+                                    <input type="number" name="telpon" class="form-control" value="{{$pendaftar->telpon}}">
                                 </div>
                             </div>
                             <div class="form-group row mb-4">
@@ -74,7 +79,8 @@
                                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-2">Kota/Kabupaten</label>
                                 <div class="col-sm-12 col-md-8">
                                     <select name="id_kotas" id="kota_id" class="form-control select2">
-                                        <option disabled value selected>-Kota/Kabupaten-</option>
+                                        <option disabled value>-Kota/Kabupaten-</option>
+                                        <option value="{{ $pendaftar->id_kotas }}" selected>{{ $provinsi->provinsi }}</option>
                                     </select>
                                 </div>
                             </div>
