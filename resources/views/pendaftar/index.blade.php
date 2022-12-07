@@ -105,9 +105,9 @@
                                             <td>{{$daftar->alamat}}</td>
                                             <td>
                                                 @if (empty($daftar->nilai_perhitungan))
-                                                <a href="{{ route('dashboard.pendaftar.edit', $daftar->id_pendaftar_beasiswas) }}" class="btn btn-warning">Edit</a>
-                                                <a href="{{ route('dashboard.pendaftar.show', $daftar->id_pendaftar_beasiswas) }}" class="btn btn-info">Detail</a>
-                                                <a onclick="return confirm ('Hapus data?')" href="{{ route('dashboard.pendaftar.destroy', $daftar->id_pendaftar_beasiswas) }}" class="btn btn-danger">Delete</a>
+                                                <a href="{{ route('dashboard.pendaftar.edit', $daftar->id_pendaftar_beasiswas) }}" class="btn btn-warning ms-2 mt-2 w-100">Edit</a>
+                                                <!-- <a href="{{ route('dashboard.pendaftar.show', $daftar->id_pendaftar_beasiswas) }}" class="btn btn-info">Detail</a> -->
+                                                <a onclick="return confirm ('Hapus data?')" href="{{ route('dashboard.pendaftar.destroy', $daftar->id_pendaftar_beasiswas) }}" class="btn btn-danger ms-2 mt-2 w-100">Delete</a>
                                                 @else
                                                 -
                                                 @endif

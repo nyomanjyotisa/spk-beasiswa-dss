@@ -42,6 +42,7 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.', 'middleware' => ['a
             $bulan = $now->month;
             return redirect()->route('dashboard.penerima.list', [$tahun, $bulan]);
         })->name('penerimas');
+        Route::get('/show/{id}', [PenerimaController::class,'show'])->name('show');
         Route::get('/{tahun}/{bulan}', [PenerimaController::class,'index'])->name('list');
         Route::get('/generate/{tahun}/{bulan}', [PenerimaController::class,'generate'])->name('generate');
         Route::get('/regenerate/{tahun}/{bulan}', [PenerimaController::class,'regenerate'])->name('regenerate');
