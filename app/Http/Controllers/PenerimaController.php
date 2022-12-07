@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Atribut;
+use App\Models\Kota;
+use App\Models\Provinsi;
 use App\Models\Data;
 use App\Models\PendaftarBeasiswa;
 use App\Models\PenerimaBeasiswa;
@@ -69,7 +71,10 @@ class PenerimaController extends Controller
     public function show($id)
     {
         $type_menu = "";
-        return view('penerima.show', compact("type_menu"));
+        $penerima = PenerimaBeasiswa::with("provinsiModel", "kota")->find($id);
+        $datas = PendaftarBeasiswa::get();
+        $provinsis = Provinsi::all();
+        return view('penerima.show', compact("type_menu", "penerima", "datas"));
     }
 
     /**
@@ -80,7 +85,7 @@ class PenerimaController extends Controller
      */
     public function edit($id)
     {
-        
+
     }
 
     /**
